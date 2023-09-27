@@ -5,17 +5,14 @@ import Main from '../components/Main'
 import ProductGrid from '../components/ProductGrid'
 import {allProducts, getSomeProducts} from '../utils/getProducts'
 
-export const getStaticProps = async () => {
-  const products = await getSomeProducts(4)
-  return {
-    props: {
-      'products': products.slice(0, 4)
-    },
 
-  }
-}
 
-const Home = function(props) {
+
+export default async function Home(props) {
+
+    const products = await getSomeProducts(4)
+
+
   return (
     <>
       <Head>
@@ -30,9 +27,8 @@ const Home = function(props) {
 
         />
 
-      <ProductGrid title="Featured Products" products={props.products} />
+      <ProductGrid title="Featured Products" products={products} />
     </>
   )
 }
 
-export default Home
