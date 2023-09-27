@@ -2,12 +2,11 @@
 // Path: /pages/products/[slug].js
 import Image from 'next/image'
 import React from 'react';
-import { Lightbox } from "react-modal-image";
-import { allProducts, getProductBySlug } from '../../utils/getProducts'
+import { allProducts, getProductBySlug } from '../../../utils/getProducts'
 import { StarIcon } from '@heroicons/react/20/solid'
 import Head from 'next/head'
-import Review from '../../components/Review'
-import Stars from '../../components/Stars'
+import Review from '../../../components/Review'
+import Stars from '../../../components/Stars'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -24,33 +23,13 @@ function FeaturedImage({aspectWidth, aspectHeight, src}) {
     )
 }
 
-export async function getStaticPaths() {
-    const products = await allProducts()
-
-    const paths = products.map((product) => ({
-        params: { slug: product?.slug },
-    }))
-    return { paths, fallback: false }
-}
-
-export async function getStaticProps({ params, preview = false }) {
-
+export default async function  Page({params, preview}) {
     const product = await getProductBySlug(params.slug, preview)
-
-    const reviews = { href: '#', average: 4, totalCount: 117 }
-    return {
-        props: { product, reviews, preview },
-        revalidate: 60,
-    }
-}
-
-export default function Page({ product, reviews, preview }) {
+    const reviews = product?.faunaReviews;
+    console.log({product})
     const reversedImages = product?.images.reverse()
 
     return (<>
-        <Head>
-            <title>{product?.name}</title>
-        </Head>
         {(product?.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
         <div className="col-span-2 flex"><FeaturedImage aspectWidth={5} aspectHeight={4} src={reversedImages[0].url_zoom} /></div>
 
