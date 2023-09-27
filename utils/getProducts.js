@@ -3,7 +3,8 @@ import hygraphClient, { gql } from './hygraph-client.js'
 
 // TODO: get this from hygraph instead
 // Average review.rating for a product
-function averageRating(reviews) {
+function averageRating({data: reviews}) {
+  console.log({reviews})
   const total = reviews.reduce((acc, review) => acc + review.rating, 0)
   return Math.floor(total / reviews.length)
 }
@@ -11,43 +12,44 @@ function averageRating(reviews) {
 export async function getSomeProducts(count = 4) {
 
   const query = gql`
-  query GetSomeBikes($count: Int!) {
-  bikes(first: $count) {
-    bikeName
-    id
-    slug
-    bcBikeData {
+  query GetSomeProducts($count: Int!) {
+    products(first: $count) {
+    productName
+    productSlug
+    productImage {
+      url
+      height
+      width
+    }
+    reviews {
       data {
+        id
         name
-        price
-        availability
-        images {
-          is_thumbnail
-          url_zoom
-        }
+        rating
+        comment
       }
     }
   }
-}
+  }
 `
 
 try {
-  const {bikes} = await hygraphClient.request(query, {count})
+  const {products} = await hygraphClient.request(query, {count})
   
-  return bikes
+  return products
 } catch (error) {
-  console.log(error)
+  console.log({error})
 }
 
 }
 
 export async function allProducts() {
     const query = gql`query GetAllSlugs {
-      bikes
+      products
       {
-        bikeName
+        productName
         id
-        slug
+        productSlug
         
       }
     }
@@ -65,59 +67,43 @@ export async function allProducts() {
 }
 
 export async function getProductBySlug(slug, preview=false) {
-    const query = gql`query GetSingleBike($slug: String!, $stage: Stage!) {
-      bike(where: {slug: $slug}, stage: $stage) {
-        bikeName
-        slug
-        categories
-        faunaReviews {
-          content
-          name
-          productId
-          rating
-          _ts
-          _id
-        }
-        bcBikeData{
-          data{
-            name
-            description
-            price
-            availability
-            
-            # this has all of the component data for the bikes
-            # For EMTBs only you get two additional fields - Motor and Battery
-            custom_fields {
-              name
-              value
-            }
-            images{
-              url_zoom
-              is_thumbnail
-              url_tiny
-              url_standard
-              url_thumbnail
-            }
-            variants{
-              inventory_level
-              option_values{
-                label
-              }
-            }
-          }
-        }
+  console.log('help!')
+    const query = gql`
+    query GetSingleProduct($slug: String!, $stage: Stage!) {
+  product(where: {productSlug: $slug}, stage: $stage) {
+    productName
+    productSlug
+    productDescription {
+      html
+    }
+    reviews {
+      data {
+        id
+        name
+        rating
+        comment
       }
     }
+    productCategories {
+      id
+      slug
+      categoryName
+    }
+    productImage {
+      altText
+      url
+    }
+  }
+}
+
       `
         try {
-            hygraphClient.setHeader('Authorization', `Bearer ${process.env.HYGRAPH_DEV_AUTH_TOKEN}`)
 
-            let {bike} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
+            let {product} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
+            console.log({product})
+            product.averageRating = averageRating(product.reviews)
 
-            bike.averageRating = averageRating(bike.faunaReviews)
-            bike = {...bike, ...bike.bcBikeData.data}
-
-            return bike
+            return product
         } catch (error) {
             console.log(error)
         }

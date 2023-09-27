@@ -25,12 +25,12 @@ function FeaturedImage({aspectWidth, aspectHeight, src}) {
 
 export default async function  Page({params, preview}) {
     const product = await getProductBySlug(params.slug, preview)
-    const reviews = product?.faunaReviews;
-    console.log({product})
-    const reversedImages = product?.images.reverse()
+    const reviews = product?.reviews?.data;
+    console.log(product.productImage.length)
+    const reversedImages = product?.productImage.reverse()
 
     return (<>
-        {(product?.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
+        {(product?.productImage.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
         <div className="col-span-2 flex"><FeaturedImage aspectWidth={5} aspectHeight={4} src={reversedImages[0].url_zoom} /></div>
 
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
@@ -44,8 +44,8 @@ export default async function  Page({params, preview}) {
         </div>)}
         <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                {(product?.images.length === 1) && (
-                    <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[0].url_zoom} />
+                {(product?.productImage.length === 1) && (
+                    <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[0].url} />
                 )}
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product?.name}</h1>
             </div>
@@ -59,9 +59,9 @@ export default async function  Page({params, preview}) {
                     <h3 className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
                     <div className="flex items-center">
                         <Stars rating={product?.averageRating} />
-                        <p className="sr-only">{reviews.average} out of 5 stars</p>
+                        <p className="sr-only">{product?.averageRating} out of 5 stars</p>
                         <a href="#reviews" className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                            {product?.faunaReviews?.length} reviews
+                            {reviews.length} reviews
                         </a>
                     </div>
                 </div>
@@ -77,34 +77,18 @@ export default async function  Page({params, preview}) {
                 {/* Description and details */}
                 <div>
                     <h3 className="sr-only">Description</h3>
-                    <div className="mb-10" dangerouslySetInnerHTML={{__html: product?.description}}></div>
-                    { product?.bcBikeData.data.custom_fields && (
-                        <>
-                        <h3 className="text-2xl font-bold tracking-tight text-gray-900">Details</h3>
-
-                        <table className='min-w-full'>
-                            <tbody>
-                                {product?.bcBikeData.data.custom_fields.map((field) => (
-                                <tr key={field.name} >
-                                    <td className='py-2 font-bold text-gray-900'>{field.name}</td>
-                                    <td className='py-2 text-gray-900'> {field.value}</td>
-
-                                </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        </>
-                    )}
+                    <div className="mb-10" dangerouslySetInnerHTML={{__html: product?.productDescription.html}}></div>
+                    
                     
                 </div>
             </div>
         </div>
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            {product?.faunaReviews?.length > 0 && (<>
+            {reviews.length > 0 && (<>
                 <h3 id="reviews" className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
                 <div className='grid grid-cols-1 divide-y'>
-                    {product?.faunaReviews?.map((review) => (
-                        <Review key={review._id} review={review} />
+                    {reviews.map((review) => (
+                        <Review key={review.id} review={review} />
                     ))}
                 </div>
             </>)}

@@ -27,7 +27,7 @@ export default async function Home(props) {
 
         />
 
-      <ProductGrid title="Featured Products" products={products} />
+      {products && <ProductGrid title="Featured Products" products={products} />}
     </>
   )
 }

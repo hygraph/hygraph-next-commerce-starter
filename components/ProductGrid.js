@@ -1,25 +1,26 @@
 import Main from "./Main"
 
 const Product = function({product}) {
-  const thumbnail = product.bcBikeData.data.images.filter(image => image.is_thumbnail)[0]
+  const thumbnail = product.productImage[0]
+  console.log({thumbnail})
     return (<div className="group relative">
   <div className="min-h-80 aspect-w-8 aspect-h-5 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 ">
     {thumbnail && <img
-      src={thumbnail.url_zoom}
+      src={thumbnail.url}
       className="h-full w-full object-cover object-center lg:h-full lg:w-full"
     />}
   </div>
   <div className="mt-4 flex justify-between">
     <div>
       <h3 className="text-sm text-gray-700">
-        <a href={'/products/' + product.slug}>
+        <a href={'/products/' + product.productSlug}>
           <span aria-hidden="true" className="absolute inset-0" />
-          {product.bikeName}
+          {product.productName}
         </a>
       </h3>
       <p className="mt-1 text-sm text-gray-500">{product.color}</p>
     </div>
-    <p className="text-sm font-medium text-gray-900">${product.bcBikeData.data.price}</p>
+    <p className="text-sm font-medium text-gray-900">$Money</p>
   </div>
 </div>)
 }
