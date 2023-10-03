@@ -1,16 +1,16 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Hero, {FullHero} from '../../components/Hero'
-import Main from '../../components/Main'
-import ProductGrid from '../../components/ProductGrid'
-import {allProducts, getSomeProducts} from '../../utils/getProducts'
+import Hero, {FullHero} from '../../../components/Hero'
+import Main from '../../../components/Main'
+import ProductGrid from '../../../components/ProductGrid'
+import {allProducts, getSomeProducts} from '../../../utils/getProducts'
 
-import { getPageBySlug } from '../../utils/getPages'
+import { getPageBySlug } from '../../../utils/getPages'
 
 
-export default async function Home(props) {
-
-    const {link, stripes,landingPageTitle} = await getPageBySlug('/')
+export default async function Page({params}) {
+  console.log({params})
+    const {link, stripes,landingPageTitle} = await getPageBySlug(params.slug)
   console.log({stripes})
     const products = await getSomeProducts(4)
 
@@ -29,8 +29,8 @@ export default async function Home(props) {
             key={stripe.id}
             title={stripe.heading}
             description={stripe.body.raw}
-            button={{text: stripe.button.text, url: stripe.button.url}}
-          />
+            button={{text: stripe?.button?.text, url: stripe?.button?.url}}
+            />
         }
         if (stripe.__typename === 'ProductGrid') {
           return <ProductGrid key={stripe.id} title={stripe.headline} products={stripe.products} />

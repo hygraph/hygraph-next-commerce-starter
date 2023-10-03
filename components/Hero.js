@@ -1,7 +1,7 @@
 import Main from "./Main"
 import { RichText } from "@graphcms/rich-text-react-renderer"
 export default function Hero({ button, title, description, image}) {
-
+  console.log({button})
   return (  
     <Main>
     <div className="grid grid-cols-4 gap-4 mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
@@ -12,7 +12,7 @@ export default function Hero({ button, title, description, image}) {
       <p className="mt-3 text-base text-gray-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
         <RichText content={description} />
       </p>
-      {button ? <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+      {button.url ? <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
         <div className="rounded-md shadow">
            <a
             href={button.url}
