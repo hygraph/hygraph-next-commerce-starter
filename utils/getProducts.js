@@ -20,6 +20,7 @@ export async function getSomeProducts(count = 4) {
       url
       height
       width
+      altText
     }
     reviews {
       data {
@@ -73,6 +74,7 @@ export async function getProductBySlug(slug, preview=false) {
   product(where: {productSlug: $slug}, stage: $stage) {
     productName
     productSlug
+    productPrice
     productDescription {
       html
     }

@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['tailwindui.com'],
+    domains: ['media.graphassets.com'],
   },
   experimental: {
     workerThreads: false,
