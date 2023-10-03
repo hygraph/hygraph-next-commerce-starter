@@ -1,11 +1,13 @@
 import hygraphClient, { gql } from './hygraph-client.js'
-
+import { ProductGridFragment } from './fragments/productGrid.js'
 
 export async function allCategories() {
     const query = gql`query MyQuery {
-      bikeCategories{
+      productCategories{
         slug
-        name
+        categoryName
+        description
+        ${ProductGridFragment}
       }
     }
     
@@ -20,49 +22,25 @@ export async function allCategories() {
 }
 
 export async function getCategoryBySlug(slug) {
-
+console.log({slug})
   const query = `
     query getCategoryBySlug($slug: String) {
-      bikeCategory(where: {slug: $slug}) {
+      productCategory(where: {slug: $slug}) {
         slug
-        name
-        bcId
+        categoryName
         description {
-          html
+          raw
         }
-        id
+        ${ProductGridFragment}
       }
     }
     
       `
 
-      const productsQuery = `
-      query GetBikesByCategoryId($bcId: Int!) {
-        bikes(where: {categories_contains_some: [$bcId]}) {
-          bikeName
-          id
-          slug
-          bcBikeData {
-            data {
-              name
-              price
-              availability
-              images {
-                is_thumbnail
-                url_zoom
-              }
-            }
-          }
-        }
-      }
-      `
-
       try {
-        let {bikeCategory} = await hygraphClient.request(query, {slug})
-        const products = await hygraphClient.request(productsQuery, {bcId: bikeCategory.bcId})
-        const categoryWithProducts = {...bikeCategory, "products": products.bikes}
+        let {productCategory} = await hygraphClient.request(query, {slug})
         
-        return categoryWithProducts
+        return productCategory
       } catch (error) {
         console.log(error)
       }
