@@ -1,5 +1,5 @@
 import hygraphClient, { gql } from './hygraph-client.js'
-
+import { ProductGridFragment } from './fragments/productGrid.js'
 
 export async function getPageBySlug(slug, preview=false) {
   const query = gql`
@@ -32,17 +32,7 @@ export async function getPageBySlug(slug, preview=false) {
           html
         }
         headline
-        products {
-          id
-          productName
-          productSlug
-          productPrice
-          productImage {
-            url
-            width
-            height
-          }
-        }
+        ${ProductGridFragment}
       }
     }
   }
