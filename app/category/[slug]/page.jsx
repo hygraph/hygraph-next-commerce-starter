@@ -7,9 +7,7 @@ import { getCategoryBySlug } from '../../../utils/getCategories'
 
 
 export default async function Page({params}) {
-    console.log({params})
     const category = await getCategoryBySlug(params.slug)
-    console.log({category})
     return (<>
         <Head>
           <title>{category.categoryName}</title>

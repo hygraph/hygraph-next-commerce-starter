@@ -22,7 +22,6 @@ export async function allCategories() {
 }
 
 export async function getCategoryBySlug(slug) {
-console.log({slug})
   const query = `
     query getCategoryBySlug($slug: String) {
       productCategory(where: {slug: $slug}) {

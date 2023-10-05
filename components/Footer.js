@@ -1,4 +1,4 @@
-import navigation from '../utils/navigation'
+import navigation from '../utils/getNavigation'
 export default function Footer() {
 return (
     <footer className="text-center mt-20 lg:text-left bg-gray-100 text-gray-600">
@@ -61,11 +61,11 @@ return (
           Products
         </h6>
         <ul >
-        {navigation.map((category) => (
+        {/* {navigation.map((category) => (
             <li key={category.slug} className="mb-4"><a href={`/category/${category.slug}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
             {category.name}
             </a></li>
-        ))}
+        ))} */}
         </ul>
       </div>
       <div className="">

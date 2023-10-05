@@ -9,9 +9,7 @@ import { getPageBySlug } from '../../../utils/getPages'
 
 
 export default async function Page({params}) {
-  console.log({params})
     const {link, stripes,landingPageTitle} = await getPageBySlug(params.slug)
-  console.log({stripes})
     const products = await getSomeProducts(4)
 
 
@@ -22,9 +20,7 @@ export default async function Page({params}) {
       </Head>
 
       { stripes && stripes.map(stripe => {
-      console.log(stripe.__typename)
         if (stripe.__typename === 'CallToAction') {
-          console.log(stripe.headline)
           return <Hero
             key={stripe.id}
             title={stripe.heading}

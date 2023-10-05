@@ -4,17 +4,19 @@ import {
   Bars3Icon,
   ShoppingCartIcon
 } from '@heroicons/react/24/outline'
-import navigation from '../utils/navigation'
+import  { getNavigationById } from '../utils/getNavigation'
+import Main from './Main'
 
 
-export default function Navbar() {
+export default async function Navbar() {
+  const nav = await getNavigationById('main')
+  console.log({nav})
   return (
-    <div className="mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="px-4 sm:px-6">
+    <Main>
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="/">
-              <span className="sr-only">Hygraph Bikes</span>
+              <span className="sr-only">Hygraph Commerce</span>
               <img
                 className="h-8 w-auto sm:h-10"
                 src="/logo.svg"
@@ -28,23 +30,20 @@ export default function Navbar() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button> */}
           </div>
-          {/* <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            {navigation.map((category) => (
-              <a key={category.slug} href={`/category/${category.slug}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
-                {category.name}
+           
+  
+          <div className="hidden items-center gap-5 justify-end md:flex md:flex-1 lg:w-0">
+          {nav.navLink.map((category) => (
+              <a key={category.id} href={category.url} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                {category.displayText}
               </a>
             ))}
-  
-          </Popover.Group> */}
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            
             <a href="/cart" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
             {<ShoppingCartIcon />} Cart
             </a>
             
           </div>
         </div>
-      </div>
 
       {/* <Transition
         as={Fragment}
@@ -59,6 +58,6 @@ export default function Navbar() {
           
         </Popover.Panel>
       </Transition> */}
-    </div>
+    </Main>
   )
 }

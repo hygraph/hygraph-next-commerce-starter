@@ -41,7 +41,6 @@ export async function getPageBySlug(slug, preview=false) {
 
     try {
         const {landingPage} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
-        console.log({landingPage})
         return landingPage
     } catch (error) {
         console.log(error)
@@ -52,7 +51,6 @@ export async function getPageBySlug(slug, preview=false) {
 
 
 export async function getProductBySlug(slug, preview=false) {
-  console.log('help!')
     const query = gql`
     query GetSingleProduct($slug: String!, $stage: Stage!) {
   product(where: {productSlug: $slug}, stage: $stage) {
@@ -85,7 +83,6 @@ export async function getProductBySlug(slug, preview=false) {
         try {
 
             let {product} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
-            console.log({product})
             product.averageRating = averageRating(product.reviews)
 
             return product
