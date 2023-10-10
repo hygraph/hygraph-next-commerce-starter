@@ -1,10 +1,10 @@
 import hygraphClient, { gql } from './hygraph-client.js'
 import { ProductGridFragment } from './fragments/productGrid.js'
 
-export async function getPageBySlug(slug, preview=false) {
+export async function getPageBySlug(slug, lang='en', preview=false) {
   const query = gql`
-  query GetSinglePage($slug: String!, $stage: Stage!) {
-    landingPage(where: {link: $slug}, stage: $stage) {
+  query GetSinglePage($slug: String!, $lang: [Locale!]! $stage: Stage!) {
+    landingPage(where: {link: $slug}, locales: $lang, stage: $stage) {
       landingPageTitle
     link
     stripes {
@@ -40,7 +40,7 @@ export async function getPageBySlug(slug, preview=false) {
     `
 
     try {
-        const {landingPage} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
+        const {landingPage} = await hygraphClient.request(query, {slug, lang: [lang], stage: preview ? 'DRAFT' : 'PUBLISHED'})
         return landingPage
     } catch (error) {
         console.log(error)
