@@ -1,16 +1,16 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Hero, {FullHero} from '../../../components/Hero'
-import Main from '../../../components/Main'
-import ProductGrid from '../../../components/ProductGrid'
-import {allProducts, getSomeProducts} from '../../../utils/getProducts'
+import Hero, {FullHero} from '../../../../components/Hero'
+import Main from '../../../../components/Main'
+import ProductGrid from '../../../../components/ProductGrid'
+import {allProducts, getSomeProducts} from '../../../../utils/getProducts'
 
-import { getPageBySlug } from '../../../utils/getPages'
+import { getPageBySlug } from '../../../../utils/getPages'
 
 
 export default async function Page({params}) {
-    const {link, stripes,landingPageTitle} = await getPageBySlug(params.slug)
-    const products = await getSomeProducts(4)
+  console.log(params)
+    const {stripes} = await getPageBySlug(params.slug, params.lang)
 
 
   return (
@@ -24,7 +24,7 @@ export default async function Page({params}) {
           return <Hero
             key={stripe.id}
             title={stripe.heading}
-            description={stripe.body.raw}
+            description={stripe?.body?.raw}
             button={{text: stripe?.button?.text, url: stripe?.button?.url}}
             />
         }
