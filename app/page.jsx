@@ -8,18 +8,16 @@ import {allProducts, getSomeProducts} from '../utils/getProducts'
 import { getPageBySlug } from '../utils/getPages'
 
 
+export const metadata = {
+  title: 'Welcome to the Hygraph Shop',
+}
 
 export default async function Page({params}) {
     const {link, stripes,landingPageTitle} = await getPageBySlug('/')
     const products = await getSomeProducts(4)
 
-
   return (
-    <>
-      <Head>
-        <title>Welcome to the Hygraph Shop</title>
-      </Head>
-
+    <header>
       { stripes && stripes.map(stripe => {
         if (stripe.__typename === 'CallToAction') {
           return <Hero
@@ -33,7 +31,7 @@ export default async function Page({params}) {
           return <ProductGrid key={stripe.id} title={stripe.headline} products={stripe.products} />
         }
       })}
-    </>
+    </header>
   )
 }
 

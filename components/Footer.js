@@ -1,8 +1,10 @@
+// Desc: Footer component for the website
+
 import navigation from '../utils/getNavigation'
 export default function Footer() {
 return (
-    <footer className="text-center mt-20 lg:text-left bg-gray-100 text-gray-600">
-  <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
+    <footer className="mt-20 text-center text-gray-600 bg-gray-100 lg:text-left">
+  <div className="flex items-center justify-center p-6 border-b border-gray-300 lg:justify-between">
     
     <div className="flex justify-center">
       <a href="#!" className="mr-6 text-gray-600">
@@ -41,13 +43,13 @@ return (
       </a>
     </div>
   </div>
-  <div className="mx-6 py-10 text-center md:text-left">
-    <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  <div className="py-10 mx-6 text-center md:text-left">
+    <div className="grid gap-8 grid-1 md:grid-cols-2 lg:grid-cols-4">
       <div className="">
         <a href="/">
             <span className="sr-only">Hygraph Bikes</span>
             <img
-                className="h-8 w-auto sm:h-10"
+                className="w-auto h-8 sm:h-10"
                 src="/logo.svg"
                 alt=""
             />
@@ -57,7 +59,7 @@ return (
         </p>
       </div>
       <div className="">
-        <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
+        <h6 className="flex justify-center mb-4 font-semibold uppercase md:justify-start">
           Products
         </h6>
         <ul >
@@ -69,7 +71,7 @@ return (
         </ul>
       </div>
       <div className="">
-        <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
+        <h6 className="flex justify-center mb-4 font-semibold uppercase md:justify-start">
           Useful links
         </h6>
         <p className="mb-4">
@@ -86,10 +88,10 @@ return (
         </p>
       </div>
       <div className="">
-        <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
+        <h6 className="flex justify-center mb-4 font-semibold uppercase md:justify-start">
           Contact
         </h6>
-        <p className="flex items-center justify-center md:justify-start mb-4">
+        <p className="flex items-center justify-center mb-4 md:justify-start">
           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="home"
             className="w-4 mr-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path fill="currentColor"
@@ -98,7 +100,7 @@ return (
           </svg>
           Dircksenstraße, Berlin, Germany
         </p>
-        <p className="flex items-center justify-center md:justify-start mb-4">
+        <p className="flex items-center justify-center mb-4 md:justify-start">
           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope"
             className="w-4 mr-4" role="img" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512">
@@ -108,7 +110,7 @@ return (
           </svg>
           info@hygraph.com
         </p>
-        <p className="flex items-center justify-center md:justify-start mb-4">
+        <p className="flex items-center justify-center mb-4 md:justify-start">
           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone"
             className="w-4 mr-4" role="img" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512">
@@ -131,7 +133,7 @@ return (
       </div>
     </div>
   </div>
-  <div className="text-center p-6 bg-gray-200">
+  <div className="p-6 text-center bg-gray-200">
     <span>© 2022 Copyright Hygraph Bikes</span>
     
   </div>
