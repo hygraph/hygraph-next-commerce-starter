@@ -9,11 +9,11 @@ export async function getNavigationById(id) {
         page {
           ... on BlogPost {
             id
-            slug
+            url: slug
           }
           ... on LandingPage {
             id
-            link
+            url: link
           }
           ... on Product {
             id

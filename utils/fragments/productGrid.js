@@ -9,5 +9,10 @@ export const ProductGridFragment = `products {
             width
             height
           }
+          localizations(locales: en) {
+            productImage{
+              url
+            }
+          }
         }`
         

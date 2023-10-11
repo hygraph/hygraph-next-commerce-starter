@@ -1,8 +1,9 @@
 import Main from "./Main"
 
 const Product = function({product}) {
-  const thumbnail = product.productImage[0]
-    return (<div className="group relative">
+  const thumbnail = product.productImage[0] || product.localizations[0]?.productImage[0]
+
+  return (<div className="group relative">
   <div className="min-h-80 aspect-w-8 aspect-h-5 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 ">
     {thumbnail && <img
       src={thumbnail.url}
