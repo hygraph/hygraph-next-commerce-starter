@@ -10,8 +10,8 @@ Option 1: One-click Deployment
 Option 2: Manual clone
 
 1. Clone this repo: ```sh git clone https://github.com/netlify-templates/next-netlify-starter.git```
-2. Navigate to the directory and run ```sh npm install```
-3. Run ```sh npm run dev```
+2. Navigate to the directory and run ```npm install```
+3. Run ```npm run dev```
 4. Manually connect Netlify(using the netlify.toml template) when ready to deploy
 
 ## Running the project
