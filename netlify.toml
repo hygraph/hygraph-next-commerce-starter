@@ -4,6 +4,12 @@
   functions = "netlify/functions"
   publish = ".next"
 
+ ## Environment Variables
+ 
+ [template.environment]
+    HYGRAPH_ENDPOINT = "PUT YOUR HYGRAPH ENDPOINT HERE"
+    SECRET_KEY = "PUT YOUR SECRET KEY HERE"
+    
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
   #[[redirects]]
@@ -19,3 +25,7 @@
   #  publish = "dist" # Folder with the static content for _redirect file
 
   ## more info on configuring this file: https://docs.netlify.com/configure-builds/file-based-configuration/
+ 
+
+
+
