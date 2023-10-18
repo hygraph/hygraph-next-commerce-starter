@@ -98,9 +98,9 @@ export async function getProductBySlug(slug, preview=false) {
 
       `
         try {
-
+            if (preview) hygraphClient.setHeader('Authorization', `Bearer ${process.env.HYGRAPH_DEV_AUTH_TOKEN}`)
+      
             let {product} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
-
             product.averageRating = averageRating(product.reviews)
 
             return product
@@ -111,7 +111,8 @@ export async function getProductBySlug(slug, preview=false) {
   
 
 export async function getPreviewProductBySlug(slug) {
-  const data = getProductBySlug(slug, true)
+  console.log('we\'re running the preview slug getter')
+  const data = await getProductBySlug(slug, true)
 
   return data
 }

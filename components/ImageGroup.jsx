@@ -1,5 +1,5 @@
 import FeaturedImage from "./FeaturedImage";
-
+// TODO: Add multi image support
 export default function ImageGroup({ images }) {
   return (
     <div>
