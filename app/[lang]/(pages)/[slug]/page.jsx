@@ -9,7 +9,6 @@ import { getPageBySlug } from '../../../../utils/getPages'
 
 
 export default async function Page({params}) {
-  console.log(params)
     const {stripes} = await getPageBySlug(params.slug, params.lang)
 
 

@@ -7,13 +7,19 @@ import Review from '../../../components/Review'
 import Stars from '../../../components/Stars'
 import ImageGroup from '../../../components/ImageGroup'
 import Main from '../../../components/Main'
+import { cookies } from 'next/headers'
+ 
+
+
 export default async function  Page({params, preview}) {
-    const product = await getProductBySlug(params.slug, preview)
+    const draftMode = cookies().get('draftMode')
+
+    const product = await getProductBySlug(params.slug, draftMode)
     const reviews = product?.reviews?.data;
 
     return (<Main>
        <div className='grid md:grid-cols-[minmax(200px,1fr)_1fr] my-10 gap-3 divide-x'>
-        <ImageGroup images={product?.productImage} />
+        {product?.productImage && <ImageGroup images={product?.productImage} />}
         <div className='pl-2'>
         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product?.productName}</h1>
 
@@ -42,7 +48,7 @@ export default async function  Page({params, preview}) {
                     </div>
             </div>
         <div className="">
-            {reviews.length > 0 && (<>
+            {reviews?.length > 0 && (<>
                 <h3 id="reviews" className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
                 <div className='grid grid-cols-1 divide-y'>
                     {reviews.map((review) => (
