@@ -1,14 +1,11 @@
-import { Fragment } from 'react'
-// import { Popover, Transition } from '@headlessui/react'
 import {
-  Bars3Icon,
   ShoppingCartIcon
 } from '@heroicons/react/24/outline'
 import  { getNavigationById } from '../utils/getNavigation'
 import Main from './Main'
+import MobileNav from './MobileNav'
 
-
-export default async function Navbar(params) {
+export default async function Navbar() {
   const nav = await getNavigationById('main')
 
 
@@ -44,21 +41,11 @@ export default async function Navbar(params) {
             </a>
             
           </div>
+          <div className='md:hidden'>
+            <MobileNav nav={nav} />
+          </div>
         </div>
 
-      {/* <Transition
-        as={Fragment}
-        enter="duration-200 ease-out"
-        enterFrom="opacity-0 scale-95"
-        enterTo="opacity-100 scale-100"
-        leave="duration-100 ease-in"
-        leaveFrom="opacity-100 scale-100"
-        leaveTo="opacity-0 scale-95"
-      >
-        <Popover.Panel focus className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
-          
-        </Popover.Panel>
-      </Transition> */}
     </Main>
   )
 }
