@@ -5,7 +5,7 @@ This project is a federated content demo for Hygraph. It combines content from a
 
 Option 1: One-click Deployment 
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/brob/hygraph-next-commerce-starter)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/hygraph/hygraph-next-commerce-starter)
 
 Option 2: Manual clone
 
