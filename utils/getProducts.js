@@ -1,4 +1,3 @@
-import products from '../tmp_data/products.js'
 import hygraphClient, { gql } from './hygraph-client.js'
 
 // TODO: get this from hygraph instead
