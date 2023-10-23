@@ -9,7 +9,7 @@ Option 1: One-click Deployment
 
 Option 2: Manual clone
 
-1. Clone this repo: ```git clone git@github.com:brob/hygraph-storefront.git```
+1. Clone this repo: ```git clone https://github.com/hygraph/hygraph-next-commerce-starter```
 2. Navigate to the directory and run ```npm install```
 3. Run ```npm run dev```
 4. Manually connect Netlify(using the netlify.toml template) when ready to deploy
