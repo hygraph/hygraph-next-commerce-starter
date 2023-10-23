@@ -5,11 +5,11 @@ This project is a federated content demo for Hygraph. It combines content from a
 
 Option 1: One-click Deployment 
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/brob/hygraph-next-commerce-starter)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/hygraph/hygraph-next-commerce-starter)
 
 Option 2: Manual clone
 
-1. Clone this repo: ```git clone git@github.com:brob/hygraph-storefront.git```
+1. Clone this repo: ```git clone https://github.com/hygraph/hygraph-next-commerce-starter```
 2. Navigate to the directory and run ```npm install```
 3. Run ```npm run dev```
 4. Manually connect Netlify(using the netlify.toml template) when ready to deploy
