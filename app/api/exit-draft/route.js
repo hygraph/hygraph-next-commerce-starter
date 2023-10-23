@@ -1,8 +1,9 @@
-import { cookies } from 'next/headers'
+//import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
- 
-export async function GET(request) {
 
-  cookies().delete('draftMode')
+import { draftMode } from 'next/headers'
+ 
+export async function GET() {
+  draftMode().disable()
   redirect('/')
 }

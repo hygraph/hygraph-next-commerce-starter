@@ -1,20 +1,19 @@
 // Product detail pages generated from utils/getProducts.js
 // Path: /pages/products/[slug].js
-import Image from 'next/image'
 import React from 'react';
 import { getProductBySlug } from '../../../utils/getProducts'
 import Review from '../../../components/Review'
 import Stars from '../../../components/Stars'
 import ImageGroup from '../../../components/ImageGroup'
 import Main from '../../../components/Main'
-import { cookies } from 'next/headers'
+import { draftMode } from 'next/headers';
  
 
 
-export default async function  Page({params, preview}) {
-    const draftMode = cookies().get('draftMode')
 
-    const product = await getProductBySlug(params.slug, draftMode)
+export default async function  Page({params}) {
+    const preview = draftMode().isEnabled;
+    const product = await getProductBySlug(params.slug, preview)
     const reviews = product?.reviews?.data;
 
     return (<Main>
@@ -27,7 +26,7 @@ export default async function  Page({params, preview}) {
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight text-gray-900">${product?.productPrice}</p>
                 {/* Reviews */}
-                    <h3 className="text-2xl font-bold tracking-tight mt-3 text-gray-900">Reviews</h3>
+                    <h3 className="mt-3 text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
                     <div className="flex items-center">
                         <Stars rating={product?.averageRating} />
                         <p className="sr-only">{product?.averageRating} out of 5 stars</p>
@@ -37,7 +36,7 @@ export default async function  Page({params, preview}) {
                     </div>
                 <button
                     type="submit"
-                    className="my-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="flex items-center justify-center w-full px-8 py-3 my-10 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                     Add to bag
                 </button>

@@ -1,7 +1,7 @@
-import { cookies } from "next/headers"
+import { cookies, draftMode } from "next/headers"
 
-export default function Alert({ preview }) {
-  const draftMode = cookies().get('draftMode')
+export default function Alert({  }) {
+  const preview = draftMode().isEnabled
   return (
     <div
       className={'border-b bg-indigo-500 border-accent-7 text-white py-2 text-center'}

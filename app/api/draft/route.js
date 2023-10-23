@@ -2,7 +2,7 @@
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { getProductBySlug } from '../../../utils/getProducts'
-import { cookies } from 'next/headers'
+//import { cookies } from 'next/headers'
 
 export async function GET(request) {
   // Parse query string parameters
@@ -28,8 +28,9 @@ export async function GET(request) {
  
   // Enable Draft Mode by setting the cookie
   // Need to replace when Next figures out enableDraft()
-  cookies().set('draftMode', true)
- 
+  //cookies().set('draftMode', true)
+  draftMode().enable()
+  
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
   redirect(`/${model}/${post.productSlug}`)
