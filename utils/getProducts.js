@@ -109,10 +109,3 @@ export async function getProductBySlug(slug, preview=false) {
         }
 }
   
-
-export async function getPreviewProductBySlug(slug) {
-  console.log('we\'re running the preview slug getter')
-  const data = await getProductBySlug(slug, true)
-
-  return data
-}

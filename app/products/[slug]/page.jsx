@@ -1,31 +1,19 @@
 // Product detail pages generated from utils/getProducts.js
 // Path: /pages/products/[slug].js
-import Image from 'next/image'
 import React from 'react';
 import { getProductBySlug } from '../../../utils/getProducts'
 import Review from '../../../components/Review'
 import Stars from '../../../components/Stars'
 import ImageGroup from '../../../components/ImageGroup'
 import Main from '../../../components/Main'
-//import { cookies } from 'next/headers'
 import { draftMode } from 'next/headers';
  
-async function getData() {
-    const { isEnabled } = draftMode()
-
-    const url = isEnabled
-        ? 'http://localhost:3000/api/draft/products'
-        : 'http://localhost:3000'
-
-    const res = await fetch(url)
-    return res.json
-}
 
 
-export default async function  Page({params, preview}) {
-   const draftMode = await getData()
 
-    const product = await getProductBySlug(params.slug, draftMode)
+export default async function  Page({params}) {
+    const preview = draftMode().isEnabled;
+    const product = await getProductBySlug(params.slug, preview)
     const reviews = product?.reviews?.data;
 
     return (<Main>
