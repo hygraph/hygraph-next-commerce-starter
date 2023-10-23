@@ -1,8 +1,8 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Hero, {FullHero} from '../components/Hero'
+import Main from '../components/Main'
 import ProductGrid from '../components/ProductGrid'
-import {getSomeProducts} from '../utils/getProducts'
+import {allProducts, getSomeProducts} from '../utils/getProducts'
 
 import { getPageBySlug } from '../utils/getPages'
 

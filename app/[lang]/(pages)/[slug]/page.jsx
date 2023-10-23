@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Hero, {FullHero} from '../../../../components/Hero'
 import Main from '../../../../components/Main'
@@ -13,11 +12,7 @@ export default async function Page({params}) {
 
 
   return (
-    <>
-      <Head>
-        <title>Welcome to the Hygraph Shop</title>
-      </Head>
-
+    <section>
       { stripes && stripes.map(stripe => {
         if (stripe.__typename === 'CallToAction') {
           return <Hero
@@ -31,7 +26,7 @@ export default async function Page({params}) {
           return <ProductGrid key={stripe.id} title={stripe.headline} products={stripe.products} />
         }
       })}
-    </>
+    </section>
   )
 }
 
