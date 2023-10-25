@@ -7,6 +7,7 @@ import Stars from '../../../components/Stars'
 import ImageGroup from '../../../components/ImageGroup'
 import Main from '../../../components/Main'
 import { draftMode } from 'next/headers';
+import Alert from '../../../components/PreviewAlert';
  
 
 
@@ -16,7 +17,8 @@ export default async function  Page({params}) {
     const product = await getProductBySlug(params.slug, preview)
     const reviews = product?.reviews?.data;
 
-    return (<Main>
+    return (<>
+       <Main>
        <div className='grid md:grid-cols-[minmax(200px,1fr)_1fr] my-10 gap-3 divide-x'>
         {product?.productImage && <ImageGroup images={product?.productImage} />}
         <div className='pl-2'>
@@ -56,5 +58,5 @@ export default async function  Page({params}) {
                 </div>
             </>)}
         </div>
-    </Main>)
+    </Main></>)
 }
