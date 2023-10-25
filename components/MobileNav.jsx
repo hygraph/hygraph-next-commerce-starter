@@ -25,7 +25,7 @@ export default function MobileNav(props) {
           onClick={() => setOpen(false)}
           className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-50"
         ></div>
-        <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+        <nav className={`fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white w-80 dark:bg-gray-800 ${open ? 'translate-x-0': '-translate-x-full'}`}>
           <button onClick={() => setOpen(false)} className="navbar-close">
             <svg
               className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
