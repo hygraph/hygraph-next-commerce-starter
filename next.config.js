@@ -2,10 +2,15 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['media.graphassets.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.graphassets.com",
+      },
+    ],
   },
   experimental: {
     workerThreads: false,
-    cpus: 1
+    cpus: 1,
   },
-}
+};
