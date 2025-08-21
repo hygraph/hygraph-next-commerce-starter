@@ -47,7 +47,7 @@ return (
     <div className="grid gap-8 grid-1 md:grid-cols-2 lg:grid-cols-4">
       <div className="">
         <a href="/">
-            <span className="sr-only">Hygraph Bikes</span>
+            <span className="sr-only">Hygraph Shop</span>
             <img
                 className="w-auto h-8 sm:h-10"
                 src="/logo.svg"
@@ -55,7 +55,7 @@ return (
             />
             </a>
         <p className="mt-5" >
-          Your one-stop bike shop
+          Your one-stop clothing & home goods shop
         </p>
       </div>
       <div className="">
@@ -134,7 +134,7 @@ return (
     </div>
   </div>
   <div className="p-6 text-center bg-gray-200">
-    <span>© 2022 Copyright Hygraph Bikes</span>
+    <span>© 2022 Copyright Hygraph Shop</span>
     
   </div>
 </footer>
